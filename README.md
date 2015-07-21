@@ -1,4 +1,4 @@
-# Jenkins python template
+# Jenkins cpp template
 
 Use these files to scaffold your Continuous Integration Server within your C++ projects.
 
