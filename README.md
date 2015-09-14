@@ -6,7 +6,9 @@ Use these files to scaffold your Continuous Integration Server within your C++ p
 
 This was inspirated by [the PHP jenkins template project](http://jenkins-php.org/) ([github](https://github.com/sebastianbergmann/php-jenkins-template)) by Sebastian Bergmann.
 
+## Overview
 
+![Jenkins-Cpp-Overview](https://raw.githubusercontent.com/yangboz/cpp-jenkins-template/master/Jenkins-cpp-overview.jpg "Jenkins-Cpp-Overview") 
 
 ## Requirements
 
