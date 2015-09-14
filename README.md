@@ -1,4 +1,4 @@
-# Jenkins cpp template
+# Jenkins Cpp template
 
 With "CppCheck+CppLint+CppNCSS+SLOC+CLOC+Deploy+Email" process.
 
@@ -28,6 +28,10 @@ On your jenkins instance, you must install some QA python tools:
 * [cloc](https://wiki.jenkins-ci.org/display/JENKINS/SLOCCount+Plugin)
 
         $ cloc --by-file --xml --out=${WORKSPACE}/SOURCE_FOLDER/cloc.xml ${WORKSPACE}/OUTPUT_FOLDER
+        
+* [CppNCSS](http://cppncss.sourceforge.net/)
+
+        $ cppncss [options] [file [file2 [directory [directory2] ...]]]
 
 ## Jenkins Plugins
 
