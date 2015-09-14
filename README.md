@@ -1,5 +1,7 @@
 # Jenkins cpp template
 
+With "CppCheck+CppLint+CppNCSS+SLOC+CLOC+Deploy+Email" process.
+
 Use these files to scaffold your Continuous Integration Server within your C++ projects.
 
 This was inspirated by [the PHP jenkins template project](http://jenkins-php.org/) ([github](https://github.com/sebastianbergmann/php-jenkins-template)) by Sebastian Bergmann.
@@ -12,7 +14,18 @@ On your jenkins instance, you must install some QA python tools:
 
 * [CppCheck](https://github.com/danmar/cppcheck)
 
-        $ 
+        $ cppcheck --enable=all --inconclusive --xml --xml-version=2 ${WORKSPACE}/SOURCE_FOLDER 2> ${WORKSPACE}/OUTPUT_FOLDER/cppcheck.xml
+        
+* [CppLint](https://github.com/danmar/cppcheck)
+
+        $ python /home/jenkins/cpplint-all.py ${WORKSPACE}/SOURCE_FOLDER/ 2>&1 | tee ${WORKSPACE}/OUTPUT_FOLDER/cpplint-result.xml    
+        
+* [sloccount](https://wiki.jenkins-ci.org/display/JENKINS/SLOCCount+Plugin)
+
+        $ sloccount --duplicates --wide --details ${WORKSPACE}/SOURCE_FOLDER > ${WORKSPACE}/OUTPUT_FOLDER/sloccount.sc  
+* [cloc](https://wiki.jenkins-ci.org/display/JENKINS/SLOCCount+Plugin)
+
+        $ cloc --by-file --xml --out=${WORKSPACE}/SOURCE_FOLDER/cloc.xml ${WORKSPACE}/OUTPUT_FOLDER
 
 ## Jenkins Plugins
 
@@ -33,29 +46,8 @@ Or, if you prefer to click in the web interface:
 
 1. Go to Manage Jenkins -> Configure System
 2. Scroll down to Compiler Warnings -> Parsers
-3. Add a new parser with the following details:
+3. Add a new parser(CppLint) with the following details:
 
-    1. Name and others descriptive fields:
-
-            PyFlakes
-
-    2. Regular Expression:
-
-            ^\s*(.*):(\d+):\s*(.*)$
-
-    3. Mapping Script:
-
-            import hudson.plugins.warnings.parser.Warning
-
-            String fileName = matcher.group(1)
-            String lineNumber = matcher.group(2)
-            String message = matcher.group(3)
-
-            return new Warning(fileName, Integer.parseInt(lineNumber), "Dynamic Parser", "-", message);
-
-    4.  Example Log Message:
-
-            src/fbproxy/fbresponse.py:2: 'json' imported but unused
 
 
 ## Using the Job Template
