@@ -18,7 +18,9 @@ On your jenkins instance, you must install some QA python tools:
 
         $ cppcheck --enable=all --inconclusive --xml --xml-version=2 ${WORKSPACE}/SOURCE_FOLDER 2> ${WORKSPACE}/OUTPUT_FOLDER/cppcheck.xml
         
-* [CppLint](https://github.com/danmar/cppcheck)
+* [CppLint](https://pypi.python.org/pypi/cpplint) Only single Cpp file support,please check out cpplint-all.py for folder support;
+        
+        $ pip install cpplint
 
         $ python /home/jenkins/cpplint-all.py ${WORKSPACE}/SOURCE_FOLDER/ 2>&1 | tee ${WORKSPACE}/OUTPUT_FOLDER/cpplint-result.xml    
         
